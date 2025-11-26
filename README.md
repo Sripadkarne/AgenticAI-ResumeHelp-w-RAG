@@ -176,7 +176,9 @@ Output: Personalized study plan with curated, high quality resources
 
 
 
+## **Technical Specifications**
 
+### **RAG
 
 
 
