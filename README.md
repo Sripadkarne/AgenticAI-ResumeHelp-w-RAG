@@ -51,41 +51,41 @@ Users upload their resume or answer domain-specific questions.
 
 **2. RAG-Based Knowledge Retrieval**
 
-* The RAG database is built from credible sources:
+The RAG database is built from credible sources:
 
-  * ML & Statistics textbooks
+* ML & Statistics textbooks
 
-  * Ace the Data Science Interview
+* Ace the Data Science Interview
 
-  * Applied DS/ML/AI resources
+* Applied DS/ML/AI resources
 
-  * Curated articles, videos, PDFs, and tutorials
+* Curated articles, videos, PDFs, and tutorials
 
 The engine retrieves explanations, examples, and runnable insights—not generic fluff.
 
 **3. Personalized Study Plans**
 
-* For every knowledge gap, the system generates:
+For every knowledge gap, the system generates:
 
-  * Sequenced study modules
+* Sequenced study modules
 
-  * Videos + articles + textbook excerpts
+* Videos + articles + textbook excerpts
 
-  * Hands-on exercises
+* Hands-on exercises
 
-  * Timelines and difficulty progression
+* Timelines and difficulty progression
 
 **4. Practice Question Generator**
 
-* We use agentic AI to produce:
+We use agentic AI to produce:
 
-  * Targeted practice questions
+* Targeted practice questions
 
-  * Increasing difficulty levels
+* Increasing difficulty levels
 
-  * Answer explanations based on the RAG knowledge base
+* Answer explanations based on the RAG knowledge base
 
-**High-Level Architecture**
+## **High-Level Architecture**
 
 **Frontend:**
 Built using Lovable (React-like UI).
