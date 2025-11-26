@@ -1,1 +1,38 @@
+[Sripad's Old Resume] 
+
+Education
+
+University of California, San Diego
+Planned Graduation: June 2025
+B.S. in Cognitive Science with a Specialization in Machine Learning and Neural Computation
+GPA 3.76, Provost Honors(4 Quarters)
+Relevant Coursework
+
+COGS 18 (Intro to Python) 
+MATH 18(Linear Algebra)
+Current Coursework
+
+COGS 189 (Brain Computer Interfaces), MATH 20E(Vector Calculus), and MGT 153(Business Analytics)
+Skills
+
+Programming Languages: Python (NumPy, Pandas), MATLAB 
+Software: Powerpoint, Excel 
+Soft Skills: Communication, Time Management, Decision Making, Leadership
+Experience/Projects
+
+UCSD Major Ranking Project					August 2022 - Present
+Analyze data obtained from CAPE, using tools such as Pandas and MATLAB, and rank UCSD majors by their difficulty.
+Bluetooth Phone Project					April 2021 - June 2021 
+Wrote Python code and created an app to sync a phone with a Bluetooth device to turn on its electronic circuits.
+UCSD Grad Student Helper 					June 2020 - April 2021	 	
+Carlsbad, CA
+Collaborated with a UCSD grad student in analyzing the effect of the government on standards of living in India, collecting and analyzing thousands of data points using Excel.
+Chipotle Mexican Grill Team Member 			April 2021-September 2021
+Carlsbad, CA
+Exhibited a customer service mindset and time management skills to balance ringing up orders, preparing meals, maintaining restaurant cleanliness and organization, and closing restaurant functions.
+Campus Involvement
+
+Active Member, Neurotech Club				October 2021 - Present
+Men’s Ultimate Frisbee Club 					January 2022 - June 2022
+
 
