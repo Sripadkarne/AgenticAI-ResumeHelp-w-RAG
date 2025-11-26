@@ -178,7 +178,9 @@ Output: Personalized study plan with curated, high quality resources
 
 ## **Technical Specifications**
 
-### **RAG
+### **RAG**
+
+The plan is to have the Vector DB be stored in GCP, and have the users
 
 
 
