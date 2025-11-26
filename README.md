@@ -35,18 +35,19 @@ A Job Readiness Intelligence Engine that evaluates a user's current skills, dete
 
 * Both entry-level and senior candidates
 
-##**MVP Features**
+## **MVP Features**
 
 **1. Skill Gap Detection**
 
-* Users upload their resume or answer domain-specific questions.
-Our system:
+Users upload their resume or answer domain-specific questions.
 
-* Analyzes skills, tools, and domain knowledge
+* Our system:
 
-* Compares them to real job requirements
+  * Analyzes skills, tools, and domain knowledge
 
-* Returns structured “knowledge gap” outputs
+  * Compares them to real job requirements
+
+  * Returns structured “knowledge gap” outputs
 
 **2. RAG-Based Knowledge Retrieval**
 
@@ -76,13 +77,13 @@ The engine retrieves explanations, examples, and runnable insights—not generic
 
 **4. Practice Question Generator**
 
-We use agentic AI to produce:
+* We use agentic AI to produce:
 
-Targeted practice questions
+  * Targeted practice questions
 
-Increasing difficulty levels
+  * Increasing difficulty levels
 
-Answer explanations based on the RAG knowledge base
+  * Answer explanations based on the RAG knowledge base
 
 **High-Level Architecture**
 
@@ -92,27 +93,27 @@ Communicates with backend through REST API calls.
 
 **Backend (GCP):**
 
-Cloud Run – hosts API server (FastAPI / Python)
+* Cloud Run – hosts API server (FastAPI / Python)
 
-Vertex AI – embeddings, RAG retrieval, LLM generation
+* Vertex AI – embeddings, RAG retrieval, LLM generation
 
-Cloud Storage – raw documents for ingestion
+* Cloud Storage – raw documents for ingestion
 
-Firestore – user sessions, progress, study plans
+* Firestore – user sessions, progress, study plans
 
-Cloud Functions (optional) – lightweight utilities
+* Cloud Functions (optional) – lightweight utilities
 
 **RAG Pipeline:**
 
-Document ingestion
+* Document ingestion
 
-Chunking & preprocessing
+* Chunking & preprocessing
 
-Embedding generation
+* Embedding generation
 
-Storage in vector DB (e.g., Vertex Matching Engine or self-hosted)
+* Storage in vector DB (e.g., Vertex Matching Engine or self-hosted)
 
-Retrieval + reasoning layer
+* Retrieval + reasoning layer
 
 📁 Repository Structure (Proposed)
 
