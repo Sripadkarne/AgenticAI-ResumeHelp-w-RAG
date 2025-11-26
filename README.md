@@ -143,3 +143,52 @@ resumejobhelpai/
 │
 └── README.md
 ```
+
+Agentic Workflow (Proposed)
+
+```
+Agent 1 [Skill Extractor Agent]
+Input: Resume, Job Description
+Output: List of Skills For Each
+
+Goes to:
+
+
+Agent 2[Skill Gap Agent]
+Input: List of Skills from Each Document
+Output: List of Skill Gaps
+
+Goes to:
+
+Agent 3[RAG Retrieval Agent]
+Input: List of Skill Gaps
+Output: Retrieved Relevant Info
+
+
+Goes to:
+
+
+Agent 4[Study Plan Generator Agent] [Will Have CoT & Deep Thinking for robust answers]
+Input: Retrieved Relevant Info + [Relevant Context From Resume + Job Description]
+Output: Personalized study plan with curated, high quality resources
+
+ ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
