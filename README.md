@@ -35,7 +35,8 @@ A Job Readiness Intelligence Engine that evaluates a user's current skills, dete
 
 * Both entry-level and senior candidates
 
-**MVP Features**
+##**MVP Features**
+
 **1. Skill Gap Detection**
 
 * Users upload their resume or answer domain-specific questions.
@@ -45,33 +46,33 @@ Our system:
 
 * Compares them to real job requirements
 
-Returns structured “knowledge gap” outputs
+* Returns structured “knowledge gap” outputs
 
 **2. RAG-Based Knowledge Retrieval**
 
-The RAG database is built from credible sources:
+* The RAG database is built from credible sources:
 
-ML & Statistics textbooks
+  * ML & Statistics textbooks
 
-Ace the Data Science Interview
+  * Ace the Data Science Interview
 
-Applied DS/ML/AI resources
+  * Applied DS/ML/AI resources
 
-Curated articles, videos, PDFs, and tutorials
+  * Curated articles, videos, PDFs, and tutorials
 
 The engine retrieves explanations, examples, and runnable insights—not generic fluff.
 
 **3. Personalized Study Plans**
 
-For every knowledge gap, the system generates:
+* For every knowledge gap, the system generates:
 
-Sequenced study modules
+  * Sequenced study modules
 
-Videos + articles + textbook excerpts
+  * Videos + articles + textbook excerpts
 
-Hands-on exercises
+  * Hands-on exercises
 
-Timelines and difficulty progression
+  * Timelines and difficulty progression
 
 **4. Practice Question Generator**
 
