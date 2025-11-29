@@ -1,19 +1,17 @@
 # Requires pdfplumber (pip install pdfplumber)
+# Requires langchain-groq (pip install langchain-groq)
 
 import argparse
-import json
 import os
 import sys
 import textwrap
-import urllib.error
-import urllib.request
 from typing import Optional
 from xml.etree import ElementTree as ET
 
 import pdfplumber
+from langchain_groq import ChatGroq
 
-DEFAULT_ENDPOINT = "https://api.openai.com/v1/chat/completions"
-DEFAULT_MODEL = "gpt-4o-mini"
+DEFAULT_MODEL = "llama-3.1-8b-instant"
 
 
 def extract_text_from_pdf(pdf_path: str) -> str:
@@ -98,48 +96,19 @@ def build_llm_prompt(resume_text: str) -> str:
     return instruction + resume_block
 
 
-def call_llm(
-    api_key: str,
-    model: str,
-    endpoint: str,
-    prompt: str,
-    max_tokens: int = 2000,
-) -> str:
+def call_llm(llm: ChatGroq, prompt: str) -> str:
     """
-    Calls an OpenAI-compatible chat completion endpoint and returns the assistant text.
+    Calls the Groq-hosted LLM using the same structure as backend/Agents/skillextractor.py.
     """
-    payload = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": "You convert resumes into structured XML."},
-            {"role": "user", "content": prompt},
-        ],
-        "temperature": 0.2,
-        "max_tokens": max_tokens,
-    }
-    data = json.dumps(payload).encode("utf-8")
-    request = urllib.request.Request(
-        endpoint,
-        data=data,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {api_key}",
-        },
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(request) as response:
-            result = json.load(response)
-    except urllib.error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"LLM request failed: {exc.code} {exc.reason}\n{detail}") from exc
-    except urllib.error.URLError as exc:
-        raise RuntimeError(f"Failed to reach LLM endpoint: {exc}") from exc
-
-    try:
-        return result["choices"][0]["message"]["content"]
-    except (KeyError, IndexError) as exc:
-        raise RuntimeError(f"Unexpected LLM response format: {result}") from exc
+    messages = [
+        (
+            "system",
+            "You convert resumes into structured XML that matches the requested schema exactly.",
+        ),
+        ("user", prompt),
+    ]
+    response = llm.invoke(messages)
+    return response.content.strip()
 
 
 def _indent(elem: ET.Element, level: int = 0) -> None:
@@ -191,19 +160,9 @@ def main(argv: Optional[list[str]] = None) -> None:
         help="Where to write the XML output (default: resume_parsed.xml).",
     )
     parser.add_argument(
-        "--api-key",
-        help="API key for the OpenAI-compatible endpoint. "
-        "Defaults to LLM_API_KEY or OPENAI_API_KEY environment variables.",
-    )
-    parser.add_argument(
         "--model",
         default=DEFAULT_MODEL,
         help=f"Model name to request (default: {DEFAULT_MODEL}).",
-    )
-    parser.add_argument(
-        "--endpoint",
-        default=DEFAULT_ENDPOINT,
-        help=f"Chat completion endpoint URL (default: {DEFAULT_ENDPOINT}).",
     )
     parser.add_argument(
         "--max-tokens",
@@ -211,15 +170,28 @@ def main(argv: Optional[list[str]] = None) -> None:
         default=2000,
         help="Maximum number of tokens to request from the LLM (default: 2000).",
     )
+    parser.add_argument(
+        "--api-key",
+        help="Optional GROQ_API_KEY override; otherwise the environment variable must be set.",
+    )
     args = parser.parse_args(argv)
 
-    api_key = args.api_key or os.getenv("LLM_API_KEY") or os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        parser.error("An API key is required via --api-key or the LLM_API_KEY/OPENAI_API_KEY env var.")
+    if args.api_key:
+        os.environ["GROQ_API_KEY"] = args.api_key
+    if "GROQ_API_KEY" not in os.environ or not os.environ["GROQ_API_KEY"]:
+        parser.error("Set GROQ_API_KEY in the environment or pass --api-key.")
+
+    llm = ChatGroq(
+        model=args.model,
+        temperature=0,
+        max_tokens=args.max_tokens,
+        timeout=None,
+        max_retries=2,
+    )
 
     resume_text = extract_text_from_pdf(args.input_pdf_path)
     prompt = build_llm_prompt(resume_text)
-    llm_output = call_llm(api_key, args.model, args.endpoint, prompt, args.max_tokens).strip()
+    llm_output = call_llm(llm, prompt)
 
     try:
         root = ET.fromstring(llm_output)
@@ -238,4 +210,3 @@ if __name__ == "__main__":
     except Exception as exc:
         print(f"Error: {exc}", file=sys.stderr)
         sys.exit(1)
-
