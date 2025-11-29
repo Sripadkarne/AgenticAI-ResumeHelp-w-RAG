@@ -39,11 +39,11 @@ def build_llm_prompt(resume_text: str) -> str:
     instruction = textwrap.dedent(
         """
         You are a résumé parsing assistant. Given the raw résumé text below, extract:
-        1. Skills section (grouped by category when possible).
-        2. Work experience entries with position, company, dates, location, and bullet descriptions.
+        1. Skills section (grouped by category when possible). Only include technical skills/tools/frameworks; drop human language proficiency entries.
+        2. Work experience entries with position, company, and bullet descriptions (omit any dates or locations entirely).
         3. Project entries with name, optional context, and descriptions.
         4. Education entries (degree, institution, dates, location) plus any explicit coursework.
-        5. Any remaining noteworthy lines (place under <other>).
+        5. Any remaining noteworthy lines (place under <other>), excluding personal identifiers.
 
         Output well-formed XML that matches this structure exactly:
 
@@ -57,8 +57,6 @@ def build_llm_prompt(resume_text: str) -> str:
             <job>
               <position>...</position>
               <company>...</company>
-              <dates>...</dates>
-              <location>...</location>
               <description>
                 <bullet>...</bullet>
               </description>
@@ -77,8 +75,6 @@ def build_llm_prompt(resume_text: str) -> str:
             <entry>
               <degree>...</degree>
               <institution>...</institution>
-              <dates>...</dates>
-              <location>...</location>
               <courses>
                 <course>...</course>
               </courses>
@@ -89,7 +85,7 @@ def build_llm_prompt(resume_text: str) -> str:
           </other>
         </resume>
 
-        Always include every top-level section (even if empty) and escape XML special characters.
+        Always include every top-level section (even if empty) and escape XML special characters. Do not introduce <dates> or <location> elements anywhere, avoid language-only skill categories, and never output names, phone numbers, emails, or addresses.
         """
     ).strip()
     resume_block = f"\n\nRésumé text:\n{resume_text}"
@@ -148,6 +144,28 @@ def summarize_xml(root: ET.Element) -> str:
     )
 
 
+def extract_xml_fragment(text: str) -> str:
+    """
+    Strip markdown/code fences or prose surrounding the XML payload.
+    """
+    cleaned = text.strip()
+    if "```" in cleaned:
+        fence_start = cleaned.find("```")
+        after_fence = cleaned[fence_start + 3 :]
+        if after_fence.lower().startswith("xml"):
+            after_fence = after_fence[3:]
+        fence_end = after_fence.find("```")
+        if fence_end != -1:
+            cleaned = after_fence[:fence_end].strip()
+        else:
+            cleaned = after_fence.strip()
+    if "<resume" in cleaned and "</resume>" in cleaned:
+        start = cleaned.find("<resume")
+        end = cleaned.rfind("</resume>") + len("</resume>")
+        cleaned = cleaned[start:end]
+    return cleaned.strip()
+
+
 def main(argv: Optional[list[str]] = None) -> None:
     parser = argparse.ArgumentParser(
         description="Convert a résumé PDF into structured XML using an LLM.",
@@ -192,9 +210,10 @@ def main(argv: Optional[list[str]] = None) -> None:
     resume_text = extract_text_from_pdf(args.input_pdf_path)
     prompt = build_llm_prompt(resume_text)
     llm_output = call_llm(llm, prompt)
+    xml_payload = extract_xml_fragment(llm_output)
 
     try:
-        root = ET.fromstring(llm_output)
+        root = ET.fromstring(xml_payload)
     except ET.ParseError as exc:
         raise RuntimeError(f"LLM output is not valid XML:\n{llm_output}") from exc
 
