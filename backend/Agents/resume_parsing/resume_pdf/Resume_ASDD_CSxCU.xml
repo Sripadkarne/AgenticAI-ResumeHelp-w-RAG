@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resume>
+  <skills>
+    <category name="Programming">
+      <skill>Python</skill>
+      <skill>Pandas</skill>
+      <skill>NumPy</skill>
+      <skill>SciPy</skill>
+      <skill>scikit-learn</skill>
+      <skill>statsmodels</skill>
+      <skill>Polars</skill>
+      <skill>sktime</skill>
+      <skill>tslearn</skill>
+      <skill>SQL</skill>
+      <skill>MATLAB</skill>
+      <skill>Git</skill>
+      </category>
+    <category name="Data/Time Series">
+      <skill>wrangling &amp; feature engineering</skill>
+      <skill>time-series (ARIMA, DTW)</skill>
+      <skill>validation &amp; backtesting</skill>
+      <skill>probability &amp; statistics</skill>
+      </category>
+    <category name="Analytics/MLOps">
+      <skill>Excel (Power Query/Power Pivot)</skill>
+      <skill>MLflow</skill>
+      <skill>Azure ML</skill>
+      <skill>LaTeX</skill>
+      <skill>SharePoint/Power Automate/Apps</skill>
+      </category>
+    </skills>
+  <experience>
+    <job>
+      <position>Key Account Manager Intern</position>
+      <company>SIGMA Group, Commercial Excellence Europe</company>
+      <description>
+        <bullet>Analyzed commercial performance across 6 countries (~60 resellers) to surface ROI levers and inform negotiation strategy for local KAMs.</bullet>
+        <bullet>Built 5 dynamic dashboards adopted by negotiation teams, standardizing KPIs (GP, NSV, volume) and providing visibility teams previously lacked for data-driven negotiations.</bullet>
+        </description>
+      </job>
+    <job>
+      <position>Data Scientist Intern</position>
+      <company>CHANEL Europe, Advanced Analytics &amp; Data Science</company>
+      <description>
+        <bullet>Directed end-to-end development of CRAFT, an outlier detection system analyzing 30M+ accounting entries for corporate finance teams, from problem scoping to production deployment.</bullet>
+        <bullet>Built and deployed custom anomaly detection pipelines for mixed data, outperforming Isolation Forest and DBSCAN; tracked experiments in MLFlow and deployed via AzureML.</bullet>
+        <bullet>Developed clustering &amp; multivariate techniques for 300+ monthly sales time series (KMeans / KMedoids, Euclidean &amp; DTW), enabling cluster-level forecasting templates in small-data contexts.</bullet>
+        </description>
+      </job>
+    </experience>
+  <projects>
+    <project>
+      <name>Camera-Radar Fusion Vehicle Tracking Project</name>
+      <context>Université Paris-Saclay L2S Lab &amp; Forvia</context>
+      <description>
+        <bullet>Engineered a camera–sonar tracking stack, 1 camera + 2 sonars fused via optimal transport, reaching lidar-like sensing.</bullet>
+        <bullet>Achieved ~20 cm positional accuracy within a 3 m × 2 m test area.</bullet>
+        <bullet>Coordinated with a team of 3 and conveyed findings to stakeholders.</bullet>
+        </description>
+      </project>
+    <project>
+      <name>Respiratory Monitoring System Optimization</name>
+      <context>Université Paris-Saclay L2S Lab &amp; Paris Public Hospitals</context>
+      <description>
+        <bullet>Processed and engineered features from airflow/volume signals for 100 ICU patients, creating a 2D feature space to characterize ventilator synchrony.</bullet>
+        <bullet>Employed Mazet (asymmetric linear) regression for anomaly-robust modeling and trained an SVM classifier reaching 95% recall, prioritizing sensitivity for clinical safety.</bullet>
+        <bullet>Orchestrated a team of 4 to produce functional code and comprehensive reports for near-clinical adoption.</bullet>
+        </description>
+      </project>
+    </projects>
+  <education>
+    <entry>
+      <degree>MS in Business Analytics</degree>
+      <institution>Columbia University</institution>
+      <dates>Expected Dec 2026</dates>
+      <location>New York, NY</location>
+      <courses>
+        <course>Data Analytics</course>
+        <course>Probability Statistics &amp; Simulation</course>
+        <course>Marketing Analytics</course>
+        <course>Business Analytics</course>
+        <course>AI Engineering</course>
+        <course>Deep Learning for OR &amp; Financial Engineering</course>
+        <course>Quantitative Pricing &amp; Revenue Analytics</course>
+        </courses>
+      </entry>
+    <entry>
+      <degree>Diplôme d'Ingénieur - MS in Engineering</degree>
+      <institution>Université Paris-Saclay : CentraleSupélec</institution>
+      <dates>Sep 2022 - Apr 2026</dates>
+      <location>Gif-sur-Yvette, FR</location>
+      <courses>
+        <course>Machine Learning</course>
+        <course>Algorithms</course>
+        <course>HPC &amp; Cloud computing</course>
+        <course>Signal Processing</course>
+        <course>Game Theory</course>
+        </courses>
+      </entry>
+    <entry>
+      <degree>Intensive preparatory course, Physics &amp; Engineering</degree>
+      <institution>Lycée Charlemagne &amp; Lycée Saint-Louis</institution>
+      <dates>Sep 2019 – Jul 2022</dates>
+      <location>Paris, FR</location>
+      <courses>
+        <course>Physics</course>
+        <course>Math</course>
+        <course>Engineering</course>
+        </courses>
+      </entry>
+    </education>
+  <other>
+    <line>Genius CentraleSupélec (Entrepreneurship Society)</line>
+    <line>Vice-President Oct 2022 - Feb 2024</line>
+    <line>Led a 40-member team to drive 1,000+ student engagements and partner with 40+ companies (TEDx, Innovation Fair), increasing attendance and profitability by 25%</line>
+    <line>OSER le Supérieur initiative Essonne, FR</line>
+    <line>Organizer &amp; Physics instructor Jul 2023</line>
+    <line>Coached 15 underprivileged students in math and physics through a two-week academic and career-prep camp, preparing for France’s elite CPGE programs</line>
+    <line>Languages: French (Native), Spanish (Proficient)</line>
+    </other>
+  </resume>
